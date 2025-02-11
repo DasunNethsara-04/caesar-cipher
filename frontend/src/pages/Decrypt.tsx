@@ -13,7 +13,7 @@ function Decrypt() {
 
         // get the key and the plain text
         const key: string = formData.get('key') as string;
-        const plainText: string = formData.get('plainText') as string;
+        const cipherText: string = formData.get('cipherText') as string;
 
         setIsVisible(true);
     }
@@ -33,7 +33,7 @@ function Decrypt() {
                                 </Form.Group>
                                 <Form.Group className='mb-3'>
                                     <Form.Label>Cipher Text</Form.Label>
-                                    <Form.Control as="textarea" rows={3} cols={50} name='plainText' required />
+                                    <Form.Control as="textarea" rows={3} cols={50} name='cipherText' required />
                                 </Form.Group>
                                 <Form.Group className='mb-3'>
                                     <div className="d-grid gap-2">
