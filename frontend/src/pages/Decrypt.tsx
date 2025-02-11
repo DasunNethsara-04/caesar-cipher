@@ -12,7 +12,7 @@ function Decrypt() {
         const formData: FormData = new FormData(e.target);
 
         // get the key and the plain text
-        const key: string = formData.get('key') as string;
+        const key: number = +formData.get('key') as number;
         const cipherText: string = formData.get('cipherText') as string;
 
         setIsVisible(true);

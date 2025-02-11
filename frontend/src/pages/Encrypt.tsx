@@ -12,10 +12,11 @@ function Encrypt() {
         const formData: FormData = new FormData(e.target);
 
         // get the key and the plain text
-        const key: string = formData.get('key') as string;
+        const key: number = +formData.get('key') as number;
         const plainText: string = formData.get('plainText') as string;
 
         setIsVisible(true);
+        console.log(typeof (key));
     }
 
     return (
