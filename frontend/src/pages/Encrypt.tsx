@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import NavBar from '../Components/NavBar'
 import { Button, Card, Container, Form } from 'react-bootstrap'
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 function Encrypt() {
     const [outputText, setOutputText] = useState("");
@@ -14,7 +14,7 @@ function Encrypt() {
 
         // send data to the backend
         try {
-            const response = await axios.post("http://127.0.0.1:8000/api/enc", formData, {
+            const response: AxiosResponse = await axios.post("http://127.0.0.1:8000/api/enc", formData, {
                 headers: {
                     "Content-Type": "application/json",
                 },
