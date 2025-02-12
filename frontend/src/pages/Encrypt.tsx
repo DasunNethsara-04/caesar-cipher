@@ -12,19 +12,21 @@ function Encrypt() {
 
         const formData: FormData = new FormData(e.target);
 
-        // get the key and the plain text
-        const key: number = +formData.get('key') as number;
-        const plainText: string = formData.get('plainText') as string;
-
         // send data to the backend
-        const response = await axios.post("http://127.0.0.1:8000/api/enc/", [key, plainText], {
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
+        try {
+            const response = await axios.post("http://127.0.0.1:8000/api/enc", formData, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            if (response.status === 200 || response) {
+                console.log(response.data);
+            }
+        } catch (err) {
+            console.error(err);
+        }
 
         setIsVisible(true);
-        console.log(typeof (key));
     }
 
     return (
