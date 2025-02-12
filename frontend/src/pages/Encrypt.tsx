@@ -20,7 +20,7 @@ function Encrypt() {
                 },
             });
             if (response.status === 200 || response) {
-                console.log(response.data);
+                setOutputText(response.data.cipherText);
             }
         } catch (err) {
             console.error(err);
@@ -60,7 +60,16 @@ function Encrypt() {
                             <Card.Body>
                                 <Form.Group className='mt-3'>
                                     <Form.Label>Cipher Text</Form.Label>
-                                    <Form.Control as="textarea" rows={3} cols={50} name='outputText' readOnly />
+                                    <Form.Control
+                                        as="textarea"
+                                        rows={3}
+                                        cols={50}
+                                        name='outputText'
+                                        value={outputText}
+                                        className='text-center'
+                                        style={{ fontSize: '1.5rem', fontWeight: 'bold' }}
+                                        readOnly
+                                    />
                                 </Form.Group>
                             </Card.Body>
                         </Card>
