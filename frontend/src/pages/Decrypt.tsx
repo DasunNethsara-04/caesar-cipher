@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import NavBar from '../Components/NavBar'
 import { Button, Card, Container, Form } from 'react-bootstrap'
+import axios, { AxiosResponse } from 'axios';
 
 function Decrypt() {
     const [outputText, setOutputText] = useState("");
@@ -10,10 +11,22 @@ function Decrypt() {
         e.preventDefault();
 
         const formData: FormData = new FormData(e.target);
-
-        // get the key and the plain text
-        const key: number = +formData.get('key') as number;
-        const cipherText: string = formData.get('cipherText') as string;
+        console.log(formData)
+        try {
+            const response: AxiosResponse = await axios.post("http://127.0.0.1:8000/api/dec", formData, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            if (response.status === 200) {
+                setOutputText(response.data.plainText);
+            } else {
+                alert("Error Decrypting Text");
+                console.error(response);
+            }
+        } catch (err) {
+            console.error(err);
+        }
 
         setIsVisible(true);
     }
@@ -49,7 +62,16 @@ function Decrypt() {
                             <Card.Body>
                                 <Form.Group className='mt-3'>
                                     <Form.Label>Plain Text</Form.Label>
-                                    <Form.Control as="textarea" rows={3} cols={50} name='outputText' readOnly />
+                                    <Form.Control
+                                        as="textarea"
+                                        rows={3}
+                                        cols={50}
+                                        name='outputText'
+                                        value={outputText}
+                                        className='text-center'
+                                        style={{ fontSize: '1.5rem', fontWeight: 'bold' }}
+                                        readOnly
+                                    />
                                 </Form.Group>
                             </Card.Body>
                         </Card>
