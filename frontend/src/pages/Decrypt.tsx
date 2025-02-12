@@ -11,7 +11,6 @@ function Decrypt() {
         e.preventDefault();
 
         const formData: FormData = new FormData(e.target);
-        console.log(formData)
         try {
             const response: AxiosResponse = await axios.post("http://127.0.0.1:8000/api/dec", formData, {
                 headers: {
