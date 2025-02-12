@@ -36,7 +36,7 @@ The Caesar Cipher is one of the simplest and most widely known encryption techni
 
 3. Start the frontend development server:
    ```sh
-   npm start
+   npm run dev
    ```
 
 ### Backend
