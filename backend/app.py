@@ -29,5 +29,6 @@ async def encrypt_text(text: EncText) -> dict[str, str]:
 
 
 @app.post("/api/dec")
-async def decrypt_text(text: DecText) -> dict[str, DecText]:
-    return {"returned": text}
+async def decrypt_text(text: DecText) -> dict[str, str]:
+    plain_text: str = text_controller.decrypt(text.cipherText, text.key)
+    return {"plainText": plain_text}
